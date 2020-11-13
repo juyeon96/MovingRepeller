@@ -4,6 +4,7 @@
 
 let ps;
 let repeller;
+let systems = [];
 
 function setup() {
   createCanvas(640, 360);
@@ -13,6 +14,13 @@ function setup() {
 
 function draw() {
   background(51);
+
+  for(let i = 0; i < systems.length; i++) {
+    systems[i].addParticle();
+    systems[i].applyRepeller(repeller);
+    systems[i].run();
+  }
+
   ps.addParticle(mouseX, mouseY);
 
   // Apply gravity force to all Particles
@@ -28,5 +36,8 @@ function draw() {
 
   ps.applyRepeller(repeller);
   ps.run();
+}
 
+function mousePressed() {
+  systems.push(new ParticleSystem(createVector(mouseX, mouseY)));
 }

@@ -19,9 +19,14 @@ function draw() {
   let gravity = createVector(0, 0.02);
   ps.applyForce(gravity);
 
-  ps.applyRepeller(repeller);
+  let power = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
+  repeller.applyForce(power);
 
+  repeller.update();
+  repeller.edges();
   repeller.display();
+
+  ps.applyRepeller(repeller);
   ps.run();
 
 }

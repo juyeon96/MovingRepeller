@@ -9,10 +9,30 @@ class ParticleSystem {
   }
 
   addParticle(x, y) {
+    let r = random(1);
+
     if (x !== undefined && y !== undefined) {
-      this.particles.push(new Particle(x, y));
-    } else {
-      this.particles.push(new Particle(this.origin.x, this.origin.y));
+      if (r < 0.3) {
+        this.particles.push(new Particle(x, y));
+      }
+      else if(r < 0.6) {
+        this.particles.push(new Rectangle(x, y));
+      }
+      else {
+        this.particles.push(new Triangle(x, y));
+      }
+    }
+
+    else {
+      if (r < 0.3) {
+        this.particles.push(new Particle(this.origin.x, this.origin.y));
+      }
+      else if(r < 0.6) {
+        this.particles.push(new Rectangle(this.origin.x, this.origin.y));
+      }
+      else {
+        this.particles.push(new Triangle(this.origin.x, this.origin.y));
+      }
     }
   }
 
